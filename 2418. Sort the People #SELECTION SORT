@@ -1,0 +1,16 @@
+class Solution(object):
+    def sortPeople(self, names, heights):
+        """
+        :type names: List[str]
+        :type heights: List[int]
+        :rtype: List[str]
+        """
+        #SELECTION SORT
+        for i in range(len(heights)):
+            minn=i
+            for j in range(i+1,len(heights)):
+                if heights[j]>heights[minn]:
+                    minn=j
+            heights[i],heights[minn]=heights[minn],heights[i]
+            names[i],names[minn]=names[minn],names[i]
+        return names
