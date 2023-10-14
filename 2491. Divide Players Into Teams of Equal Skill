@@ -1,0 +1,20 @@
+class Solution(object):
+    def dividePlayers(self, skill):
+        """
+        :type skill: List[int]
+        :rtype: int
+        """
+        skill.sort()
+        res=0
+        right=len(skill)-1
+        skillss=skill[0]+skill[-1]
+        for left in range(len(skill)//2):
+            val=skill[left]*skill[right]
+            if skill[left]+skill[right]==skillss:
+                res+=val
+                right-=1
+            else:
+                return  -1
+        return res
+
+        
