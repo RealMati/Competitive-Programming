@@ -1,0 +1,25 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        element=0
+        check=1
+        k=len(nums)
+        while check!=len(nums):
+            if nums[element]==nums[check]:
+                nums[check]=-101
+                check+=1
+                k-=1
+            else:
+                nums[element+1],nums[check]=nums[check],nums[element+1]
+                element+=1
+                check+=1
+        return k
+                    
+
+
+
+
+                
