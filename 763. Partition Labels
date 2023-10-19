@@ -1,0 +1,22 @@
+class Solution(object):
+    def partitionLabels(self, s):
+        """
+        :type s: str
+        :rtype: List[int]
+        """
+        res=[]
+        last={}
+        while s!='':
+            for i in range(len(s)):
+                last[s[i]]=i
+            max=last[s[0]]
+            j=0
+            while j<max:
+                if last[s[j]]>max:
+                    max=last[s[j]]
+                j+=1
+            res.append(max+1)
+            if max==len(s)-1:
+                break
+            s=s[max+1:]
+        return res
