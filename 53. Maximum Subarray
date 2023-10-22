@@ -1,0 +1,11 @@
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        globalmax=curidxmax=nums[0]
+        for i in nums[1:]:
+            curidxmax=max(i,curidxmax+i)
+            globalmax=max(globalmax,curidxmax)
+        return globalmax
