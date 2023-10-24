@@ -1,0 +1,22 @@
+nums=int(input())
+for w in range(nums):
+    size=int(input())
+    test=input().split()
+    test=[int(q) for q in test]
+    pmax=0 
+    nmin=-10**9-1
+    ind=0
+    summ=0
+    while ind<size:
+        if test[ind]>=0:
+            pmax=max(pmax,test[ind])
+        elif test[ind]<0:
+            nmin=max(nmin,test[ind])
+        if test[ind]>=0 and ((ind+1<size and test[ind+1]<0) or ind+1==size):
+            summ+=pmax
+            pmax=0
+        elif test[ind]<0 and ((ind+1<size and test[ind+1]>=0) or ind+1==size):
+            summ+=nmin
+            nmin=-10**9-1
+        ind+=1
+    print(summ)
