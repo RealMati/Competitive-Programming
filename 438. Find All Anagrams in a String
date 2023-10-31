@@ -1,0 +1,32 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        windowSize=l=len(p)
+        res=[]
+        pDic={}
+        sDic={}
+        if len(s)>=len(p):
+            for i in range(windowSize):
+                if p[i] not in pDic:
+                    pDic[p[i]]=1
+                else:
+                    pDic[p[i]]+=1
+                if s[i] not in sDic:
+                    sDic[s[i]]=1
+                else:
+                    sDic[s[i]]+=1
+
+            if sDic==pDic:
+                res.append(0)
+            while l<len(s):
+                if s[l] not in sDic:
+                    sDic[s[l]]=1
+                else:
+                    sDic[s[l]]+=1
+                if sDic[s[l-windowSize]]>1:
+                    sDic[s[l-windowSize]]-=1
+                else:
+                    del sDic[s[l-windowSize]]
+                if sDic==pDic:
+                    res.append(l-windowSize+1)
+                l+=1
+        return res
