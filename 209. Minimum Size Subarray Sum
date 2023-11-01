@@ -1,0 +1,14 @@
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        start=end=0
+        summ=0
+        minimumSize=100001
+        for end in range(len(nums)):
+            summ+=nums[end]
+            while summ>=target:
+                minimumSize=min(minimumSize,end-start+1)
+                summ-=nums[start]
+                start+=1
+        if minimumSize==100001:
+            return 0
+        return minimumSize
