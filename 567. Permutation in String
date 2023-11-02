@@ -1,0 +1,34 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        winSize=len(s1)
+        if len(s2)>=winSize:
+            check={}
+            curMap={}
+            for i in s1:
+                if i in check:
+                    check[i]+=1
+                else:
+                    check[i]=1
+            for i in range(winSize):
+                if s2[i] in curMap:
+                    curMap[s2[i]]+=1
+                else:
+                    curMap[s2[i]]=1
+            if curMap==check:
+                return True
+            for start in range(winSize,len(s2)):
+                if curMap[s2[start-winSize]]==1:
+                    del curMap[s2[start-winSize]]
+                else:
+                    curMap[s2[start-winSize]]-=1
+                if s2[start] in curMap:
+                    curMap[s2[start]]+=1
+                else:
+                    curMap[s2[start]]=1
+                if curMap==check:
+                    return True
+        else:
+            return False
+        return False
+
+        
