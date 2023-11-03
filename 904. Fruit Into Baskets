@@ -1,0 +1,17 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        from collections import Counter
+        maxFruit=left=right=0
+        visited=Counter()
+        while right<len(fruits) or len(visited)==3:
+            if len(visited)==3:
+                visited[fruits[left]]-=1
+                if visited[fruits[left]]==0:
+                    del visited[fruits[left]]
+                left+=1
+                maxFruit=max(maxFruit,right-left)
+            else:
+                visited[fruits[right]]+=1
+                right+=1
+        maxFruit=max(maxFruit,right-left)
+        return maxFruit
