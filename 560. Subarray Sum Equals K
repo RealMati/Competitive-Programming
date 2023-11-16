@@ -1,0 +1,19 @@
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        s={0:1}
+        ct=summ=0
+        for i in range(len(nums)):
+            summ+=nums[i]
+            if summ-k in s:
+                ct+=s[summ-k]
+            if summ in s:
+                s[summ]+=1
+            else:
+                s[summ]=1
+
+        return ct        
