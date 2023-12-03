@@ -1,0 +1,61 @@
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        point_a=len(a)-1
+        point_b=len(b)-1
+        res=""
+        extra=0
+        while point_a>=0 and point_b>=0:
+            summ=int(a[point_a])+int(b[point_b])+extra
+            if summ==2:
+                res='0'+res
+                extra=1
+            elif summ==3:
+                res='1'+res
+                extra=1
+            elif summ==1:
+                if extra==1:
+                    res='1'+res
+                    extra=0
+                else:
+                    res='1'+res
+            else:
+                res='0'+res
+            point_a-=1
+            point_b-=1
+        while point_a>=0:
+            summ=int(a[point_a])+extra
+            if summ==2:
+                res='0'+res
+                extra=1
+            elif summ==1:
+                if extra==1:
+                    res='1'+res
+                    extra=0
+                else:
+                    res='1'+res
+            else:
+                res='0'+res
+            point_a-=1
+        while point_b>=0:
+            summ=int(b[point_b])+extra
+            if summ==2:
+                res='0'+res
+                extra=1
+            elif summ==1:
+                if extra==1:
+                    res='1'+res
+                    extra=0
+                else:
+                    res='1'+res
+            else:
+                res='0'+res
+            point_b-=1
+        if extra:
+            res='1'+res
+        return res
+
